@@ -37,11 +37,11 @@ class FilesystemTransportFactory implements TransportFactoryInterface
         $this->serializer = $serializer;
     }
 
-    public function createTransport(string $dsn, array $options): TransportInterface
+    public function createTransport(string $dsn, array $options, SerializerInterface $serializer): TransportInterface
     {
         return new FilesystemTransport(
             Connection::fromDsn($dsn, $this->filesystem, $this->lockFactory, $options),
-            $this->serializer
+            $serializer
         );
     }
 
